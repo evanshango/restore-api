@@ -1,0 +1,9 @@
+﻿.idea
+.vscode
+appsettings.json
+obj
+bin
+*.db*
+*.rdb
+*.overide*
+.git
