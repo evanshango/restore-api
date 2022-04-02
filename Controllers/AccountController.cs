@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using API.Data;
 using API.Dtos;
 using API.Entities;
@@ -78,6 +79,15 @@ public class AccountController : BaseApiController {
             Token = await _tokenService.GenerateToken(user),
             Basket = userBasket?.MapBasketToDto()
         });
+    }
+
+    [HttpGet("current/address"), Authorize]
+    public async Task<ActionResult<UserAddress>> GetSavedAddress() {
+        var address = await _userManager.Users
+            .Where(u => u.UserName == User.Identity.Name)
+            .Select(u => u.Address)
+            .FirstOrDefaultAsync();
+        return Ok(address);
     }
 
     private async Task<Basket> RetrieveBasket(string buyerId) {

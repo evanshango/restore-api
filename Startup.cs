@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,7 +32,8 @@ public class Startup {
             opt.UseSqlite(_config.GetConnectionString("DefaultConnection"));
         });
 
-        services.AddIdentityCore<User>(opt => { opt.User.RequireUniqueEmail = true; }).AddRoles<IdentityRole>()
+        services.AddIdentityCore<User>(opt => { opt.User.RequireUniqueEmail = true; })
+            .AddRoles<Role>()
             .AddEntityFrameworkStores<StoreContext>();
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
