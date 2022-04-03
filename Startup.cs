@@ -65,6 +65,7 @@ public class Startup {
 
 
         services.AddScoped<TokenService>();
+        services.AddScoped<PaymentService>();
 
         services.AddControllers();
 
