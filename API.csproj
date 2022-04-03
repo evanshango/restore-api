@@ -15,8 +15,52 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.3" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
         <PackageReference Include="Stripe.net" Version="39.103.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\asset-manifest.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\favicon.ico" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\hero1.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\hero2.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\hero3.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\logo.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\placeholder.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\boot-ang1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\boot-ang2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\boot-core1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\boot-core2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\boot-redis1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\glove-code1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\glove-code2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\glove-react1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\glove-react2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\hat-core1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\hat-react1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\hat-react2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\sb-ang1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\sb-ang2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\sb-core1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\sb-core2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\sb-react1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\products\sb-ts1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\index.html" />
+      <_ContentIncludedByDefault Remove="wwwroot\logo192.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\logo512.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\manifest.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\robots.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\css\2.74bf9dfe.chunk.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\css\main.6543776e.chunk.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\2.61925204.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\2.61925204.chunk.js.LICENSE.txt" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\3.af915549.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\main.8f674622.chunk.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\js\runtime-main.dd1d4ac8.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\media\slick.2630a3e3.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\media\slick.29518378.woff" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\media\slick.a4e97f5a.eot" />
+      <_ContentIncludedByDefault Remove="wwwroot\static\media\slick.c94f7671.ttf" />
+    </ItemGroup>
 </Project>

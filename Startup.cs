@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using API.Data;
@@ -28,8 +29,36 @@ public class Startup {
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services) {
+        // services.AddDbContext<StoreContext>(opt => {
+        //     // opt.UseNpgsql(_config.GetConnectionString("DefaultConnection"));
+        // });
+
         services.AddDbContext<StoreContext>(opt => {
-            opt.UseSqlite(_config.GetConnectionString("DefaultConnection"));
+            var env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            string connStr;
+            if (env == "Development") {
+                // Use connection string from file
+                connStr = _config.GetConnectionString("DefaultConnection");
+            }
+            else {
+                // Use connection string provided at runtime by heroku
+                var connUrl = Environment.GetEnvironmentVariable("DATABSE_URL");
+                // Parse connection URL to connection string for NpgSql
+                connUrl = connUrl?.Replace("postgresql://", string.Empty);
+                var pgUserPass = connUrl?.Split("@")[0];
+                var pgHostPortDb = connUrl?.Split("@")[1];
+                var pgHostPort = pgHostPortDb?.Split("/")[0];
+                var pgDb = pgHostPortDb?.Split("/")[1];
+                var pgUser = pgUserPass?.Split(":")[0];
+                var pgPass = pgUserPass?.Split(":")[1];
+                var pgHost = pgHostPort?.Split(":")[0];
+                var pgPort = pgHostPort?.Split(":")[1];
+
+                connStr =
+                    $"Server={pgHost}:Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb};SSL Mode=Require;Trust Server Certificate=true";
+            }
+
+            opt.UseNpgsql(connStr);
         });
 
         services.AddIdentityCore<User>(opt => { opt.User.RequireUniqueEmail = true; })
@@ -62,7 +91,6 @@ public class Startup {
                 };
             });
         services.AddAuthorization();
-
 
         services.AddScoped<TokenService>();
         services.AddScoped<PaymentService>();
@@ -106,11 +134,17 @@ public class Startup {
 
         app.UseRouting();
 
+        app.UseDefaultFiles();
+        app.UseStaticFiles();
+
         app.UseCors(o => o.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000"));
 
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        app.UseEndpoints(endpoints => {
+            endpoints.MapControllers();
+            endpoints.MapFallbackToController("Index", "Fallback");
+        });
     }
 }
