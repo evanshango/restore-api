@@ -57,42 +57,43 @@ public class Startup {
                 connStr =
                     $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database={pgDb};SSL Mode=Require;Trust Server Certificate=true";
             }
+
             opt.UseNpgsql(connStr);
         });
 
-        services.AddIdentityCore<User>(opt => { opt.User.RequireUniqueEmail = true; })
-            .AddRoles<Role>()
+        services.AddIdentityCore<User>(opt => { opt.User.RequireUniqueEmail = true; }).AddRoles<Role>()
             .AddEntityFrameworkStores<StoreContext>();
 
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(opt => {
-                opt.Events = new JwtBearerEvents {
-                    OnChallenge = context => {
-                        context.Response.OnStarting(async () => {
-                            // Write to the response in any way you wish
-                            await context.Response.WriteAsJsonAsync(new ProblemDetails {
-                                Title = "Unauthorized request",
-                                Status = 401,
-                                Detail = "Please check your credentials and try again"
-                            });
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => {
+            opt.Events = new JwtBearerEvents {
+                OnChallenge = context => {
+                    context.Response.OnStarting(async () => {
+                        // Write to the response in any way you wish
+                        await context.Response.WriteAsJsonAsync(new ProblemDetails {
+                            Title = "Unauthorized request",
+                            Status = 401,
+                            Detail = "Please check your credentials and try again"
                         });
-                        return Task.CompletedTask;
-                    }
-                };
-                opt.TokenValidationParameters = new TokenValidationParameters {
-                    ValidateIssuer = true,
-                    ValidateAudience = false,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey =
-                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWTSettings:TokenKey"])),
-                    ValidIssuer = _config["JWTSettings:Issuer"]
-                };
-            });
+                    });
+                    return Task.CompletedTask;
+                }
+            };
+            opt.TokenValidationParameters = new TokenValidationParameters {
+                ValidateIssuer = true,
+                ValidateAudience = false,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey =
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWTSettings:TokenKey"])),
+                ValidIssuer = _config["JWTSettings:Issuer"]
+            };
+        });
         services.AddAuthorization();
 
         services.AddScoped<TokenService>();
         services.AddScoped<PaymentService>();
+        services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+        services.AddScoped<ImageService>();
 
         services.AddControllers();
 
