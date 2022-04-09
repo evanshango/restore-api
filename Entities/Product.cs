@@ -9,4 +9,5 @@ public class Product {
     public string Type { get; set; }
     public string Brand { get; set; }
     public int QtyInStock { get; set; }
+    public string PublicId { get; set; }
 }

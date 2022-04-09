@@ -1,20 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.6543776e.chunk.css",
-    "main.js": "/static/js/main.8f674622.chunk.js",
-    "runtime-main.js": "/static/js/runtime-main.dd1d4ac8.js",
-    "static/css/2.74bf9dfe.chunk.css": "/static/css/2.74bf9dfe.chunk.css",
-    "static/js/2.61925204.chunk.js": "/static/js/2.61925204.chunk.js",
-    "static/js/3.af915549.chunk.js": "/static/js/3.af915549.chunk.js",
-    "index.html": "/index.html",
-    "static/js/2.61925204.chunk.js.LICENSE.txt": "/static/js/2.61925204.chunk.js.LICENSE.txt",
-    "static/media/slick-theme.css": "/static/media/slick.c94f7671.ttf"
+    "main.css": "/static/css/main.a66bede0.css",
+    "main.js": "/static/js/main.02304a79.js",
+    "static/js/27.95291165.chunk.js": "/static/js/27.95291165.chunk.js",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/js/runtime-main.dd1d4ac8.js",
-    "static/css/2.74bf9dfe.chunk.css",
-    "static/js/2.61925204.chunk.js",
-    "static/css/main.6543776e.chunk.css",
-    "static/js/main.8f674622.chunk.js"
+    "static/css/main.a66bede0.css",
+    "static/js/main.02304a79.js"
   ]
 }
